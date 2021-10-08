@@ -2,8 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Title</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>GraphQL</title>
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/reveal.css" />
     <link rel="stylesheet" href="css/theme/black.css" />
@@ -24,10 +27,262 @@
     <div class="reveal">
       <div class="slides">
         <section>
-          <h2>{{title}}</h2>
+          <h2>GraphQL</h2>
           <aside class="notes"></aside>
         </section>
-        <section data-markdown="index.md"></section>
+        <section>
+          <section>
+            <h2>Who?</h2>
+            <div class="flex">
+              <div class="flex-1 flex flex-col items-center">
+                <div><span class="highlight">Patrick</span></div>
+                <img class="rounded-full w-48" src="/img/patrick.jpg" />
+              </div>
+              <div class="flex-1 flex flex-col items-center">
+                <div><span class="highlight">Kolja</span></div>
+                <img class="rounded-full w-48" src="/img/kolja.jpg" />
+              </div>
+              <aside class="notes">Patrick will do the hands on part</aside>
+            </div>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Facts</h2>
+          </section>
+          <section>
+            <h2>Timeline</h2>
+            <ul>
+              <li>2012: Started development internally at facebook</li>
+              <li>2015: Open sourced</li>
+              <li>2018: Moved to GraphQL Foundation</li>
+            </ul>
+            <aside class="notes">Mention linux foundation</aside>
+          </section>
+          <section>
+            <h2>Language support</h2>
+            <img src="img/language_support.png" />
+          </section>
+          <section>
+            <h2>
+              <a
+                href="https://landscape.graphql.org/card-mode?category=graph-ql-adopter&grouping=category&style=borderless"
+                >Adopters</a
+              >
+            </h2>
+            <div class="flex justify-around">
+              <ul>
+                <li>Facebook</li>
+                <li>Twitter</li>
+                <li>Airbnb</li>
+                <li>Github</li>
+                <li>Atlassian</li>
+                <li>Audi</li>
+              </ul>
+              <ul>
+                <li>lyft</li>
+                <li>PayPal</li>
+                <li>shopify</li>
+                <li>KLM</li>
+                <li>NBC</li>
+                <li>New york times</li>
+              </ul>
+            </div>
+            <div>And more...</div>
+            <aside class="notes">Mention internal projects</aside>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Basics</h2>
+          </section>
+          <section>
+            <h2>Schema</h2>
+            <pre>
+              <code data-trim data-noescape>
+              type Orders {
+                    id: ID!
+                    productsList: [Product] 
+                    totalAmount: Int!
+                }
+              </code>
+            </pre>
+          </section>
+          <section>
+            <h2>Request</h2>
+            <pre>
+              <code data-trim data-noescape>
+              {
+                orders {
+                    id
+                    productsList {
+                        name
+                        price
+                    }
+                    totalAmount
+                }
+              }
+              </code>
+            </pre>
+          </section>
+          <section>
+            <h2>Response</h2>
+            <pre>
+              <code data-trim data-noescape>
+              {
+                "data": {
+                    "orders": [
+                        {
+                            "id": 1,
+                            "productsList": [
+                                {
+                                    "name": "orange",
+                                    "price": 1.5
+                                }
+                            ],
+                            "totalAmount": 150
+                        }
+                    ]
+                }
+              }
+              </code>
+            </pre>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Pro</h2>
+          </section>
+          <section>
+            <h2>Source of truth</h2>
+            <ul>
+              <li>Client calls can be validated</li>
+              <li>One place for one time calls and subscriptions</li>
+              <li>Docs will be auto updated</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Faster responses</h2>
+            <ul>
+              <li>Less http overhead</li>
+              <li>No unneeded data</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Awesome tooling</h2>
+            <ul>
+              <li>Webinterface for exploration</li>
+              <li>Active community</li>
+              <li>
+                Automatic converters (<a href="https://www.graphile.org/"
+                  >PostGraphile</a
+                >)
+              </li>
+            </ul>
+          </section>
+          <section>
+            <h2>Client flexability</h2>
+            <ul>
+              <li>Faster development</li>
+            </ul>
+            <aside class="notes">Example last /skill features</aside>
+          </section>
+          <section>
+            <h2>Versioning</h2>
+            <ul>
+              <li>Recommends versionless APIs</li>
+              <li>Clients need to explicitly ask for fields</li>
+              <li>Can deprecate fields</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Permissions</h2>
+            <ul>
+              <li>Can return different fields based on the user</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Error handling</h2>
+            <pre>
+              <code data-trim data-noescape>
+                {
+                  "errors": [
+                    {
+                      "message": "Cannot query field \"nonexistentField\" on type \"Query\".",
+                      "locations": [
+                        {
+                          "line": 2,
+                          "column": 3
+                        }
+                      ],
+                      "extensions": {
+                        "code": "GRAPHQL_VALIDATION_FAILED",
+                        "exception": {
+                          "stacktrace": [
+                            "GraphQLError: Cannot query field \"nonexistentField\" on type \"Query\".",
+                            "...additional lines...",
+                          ]
+                        }
+                      }
+                    }
+                  ],
+                  "data": null
+                }
+              </code>
+            </pre>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Contra</h2>
+          </section>
+          <section>
+            <h2>Backend complexity</h2>
+            <ul>
+              <li>Malicious clients</li>
+              <li>Caching</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Bigger requests</h2>
+            <ul>
+              <li>The request needs to include each field, that's queried</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Learning curve</h2>
+            <ul>
+              <li>Backend devs will have more to master</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Overkill for simple things</h2>
+            <ul>
+              <li>Got one or two well defined endpoints?</li>
+              <li>Project will never grow?</li>
+            </ul>
+          </section>
+        </section>
+        <section>
+          <h2>Questions❔</h2>
+        </section>
+        <section>
+          <h2>Thank you 👏</h2>
+        </section>
+        <section>
+          <h2>Sources</h2>
+          <ul class="prose-sm">
+            <li>https://graphql.org/</li>
+            <li>https://en.wikipedia.org/wiki/GraphQL</li>
+            <li>
+              https://medium.com/expedia-group-tech/pros-and-cons-of-graphql-2ec9104c74f2
+            </li>
+            <li>
+              https://www.altexsoft.com/blog/engineering/graphql-core-features-architecture-pros-and-cons/
+            </li>
+            <li>https://www.apollographql.com/docs/</li>
+          </ul>
+        </section>
       </div>
     </div>
     <script>

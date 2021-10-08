@@ -1,4 +1,5 @@
 import autoprefixer from "autoprefixer";
+import tailwindcss from "tailwindcss";
 import babel from "@rollup/plugin-babel";
 import commonjs from "@rollup/plugin-commonjs";
 import copy from "rollup-plugin-copy";
@@ -46,7 +47,7 @@ const plugins = [
   prod && terser(),
   scss(),
   postcss({
-    plugins: [autoprefixer()],
+    plugins: [tailwindcss(), autoprefixer()],
     extract: true,
     sourceMap: prod ? false : "inline",
     minimize: prod,
