@@ -27,7 +27,7 @@
     <div class="reveal">
       <div class="slides">
         <section>
-          <h2>GraphQL</h2>
+          <h1>GraphQL</h1>
           <div class="flex justify-center">
             <img class="w-48 h-48" src="/img/graphql.png" />
           </div>
@@ -35,7 +35,7 @@
         </section>
         <section>
           <section>
-            <h2>Who?</h2>
+            <h1>Who?</h1>
             <div class="flex">
               <div class="flex-1 flex flex-col items-center">
                 <div><span class="highlight">Patrick</span></div>
@@ -51,7 +51,7 @@
         </section>
         <section>
           <section>
-            <h2>Facts</h2>
+            <h1>Facts</h1>
           </section>
           <section>
             <h2>Timeline</h2>
@@ -97,7 +97,7 @@
         </section>
         <section>
           <section>
-            <h2>Basics</h2>
+            <h1>Basics</h1>
           </section>
           <section>
             <h2>Schema</h2>
@@ -153,8 +153,11 @@
           </section>
         </section>
         <section>
+          <h1>Demo</h1>
+        </section>
+        <section>
           <section>
-            <h2>Pro</h2>
+            <h1>Pro</h1>
           </section>
           <section>
             <h2>Source of truth</h2>
@@ -237,7 +240,7 @@
         </section>
         <section>
           <section>
-            <h2>Contra</h2>
+            <h1>Contra</h1>
           </section>
           <section>
             <h2>Backend complexity</h2>
@@ -267,13 +270,13 @@
           </section>
         </section>
         <section>
-          <h2>Questions❔</h2>
+          <h1>Questions❔</h1>
         </section>
         <section>
-          <h2>Thank you 👏</h2>
+          <h1>Thank you 👏</h1>
         </section>
         <section>
-          <h2>Sources</h2>
+          <h1>Sources</h1>
           <ul class="prose-sm">
             <li>https://graphql.org/</li>
             <li>https://en.wikipedia.org/wiki/GraphQL</li>
@@ -299,6 +302,30 @@
         hash: true,
         transition: "none",
         history: "true",
+        tableofcontents: {
+          // Specifies the slide title of the table of contents slide
+          title: "Table of Contents",
+
+          // Specifies the position of the table of contents slide in the presentation
+          position: 2,
+
+          // Specifies html tag in which the table of contents title stands
+          titleTag: "h2",
+
+          // Specifies which slide tag elements will be used
+          // for generating the table of contents.
+          titleTagSelector: "h1",
+
+          // Specifies if the first slide, mostly the title slide of the presentation, should be ignored.
+          ignoreFirstSlide: true,
+
+          // Specifies if every single element of the table of contents
+          // will be stepped through before moving on to the next slide.
+          fadeInElements: false,
+        },
+        dependencies: [
+          { src: "node_modules/reveal.js-tableofcontents/tableofcontents.js" },
+        ],
         plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
       });
     </script>
